@@ -26,7 +26,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            engine.handle_event(event)
+            elif engine.handle_event(event) == "quit":
+                running = False
 
         engine.handle_input()
         engine.update()

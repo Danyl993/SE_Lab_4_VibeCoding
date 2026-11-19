@@ -1,102 +1,37 @@
 # Space Invaders Game
 
-This project is a terminal-based Space Invaders clone using **Pygame**. It introduces students to interactive game design using object-oriented principles and real-time graphical rendering.
+A graphical Space Invaders game built with Pygame. The starter's collision bug and the four tasks in the assignment README are implemented here.
 
----
+## Setup
 
-## What’s Provided
-
-A partially working version of a Space Invaders game with:
-
-- A player-controlled ship that moves and shoots
-- A grid of enemies that marches side to side and drops down at the edges
-- Enemies that occasionally return fire
-- Score display
-
-You are expected to **analyze**, **interact with an AI assistant**, and **complete/fix** the game to make it fully functional.
-
-### **Use an LLM (e.g. ChatGPT or Claude) as your debugging and pair-programming partner for this lab.**
-
----
-
-## Getting Started
-
-### Setup
-
-1. Clone the repo or download the project folder.
-2. Make sure you have Python 3.10+ installed.
-3. Install dependencies:
+Requires Python 3.10+.
 
 ```bash
-pip install -r requirements.txt
-```
-
-4. Run the game:
-
-```bash
+python -m pip install -r requirements.txt
 python main.py
 ```
 
----
+## Controls
 
-## Tasks to Complete
+- Move: `Left` / `Right` or `A` / `D`
+- Fire: `Space`
+- After Game Over: `1` Easy, `2` Medium, or `3` Hard starts a fresh round; `Q` or `Esc` exits.
 
-Each task must be completed using an iterative process involving LLM suggestions and your critical code review.
+Each difficulty changes enemy marching speed and enemy fire probability. Sound effects for shots, destroyed enemies, and game over are synthesized in memory. The game continues silently if audio hardware is unavailable.
 
-### Task 1: Refine Collision Detection
+## Implemented tasks
 
-> Bullets sometimes pass straight through enemies without registering a hit, especially when firing rapidly or when two enemies are hit close together. Investigate and enhance collision accuracy.
+1. **Collision detection:** each bullet is tested once against the living enemy list; collisions are resolved with survivor lists, avoiding mutation during iteration and duplicate hits.
+2. **Game over:** a visual overlay shows the final score and waits for a replay choice or exit.
+3. **Replay:** each difficulty starts a fresh round with reset score, player, enemies, and bullets.
+4. **Sound:** firing, enemy destruction, and game over have short generated effects.
 
+## Tests
 
-### Task 2: Implement Game Over Condition
-
-> Add a screen that displays the final score once the player is hit or the enemies reach the bottom of the screen, then gracefully waits for input instead of just printing to the console.
-
-
-
-### Task 3: Add Replay Option
-
-> After Game Over, allow the user to play again by choosing a difficulty (Easy, Medium, or Hard enemy speed/fire rate), or exit.
-
-
-
-### Task 4: Add Sound Feedback
-
-> Add basic sound effects for firing, an enemy being destroyed, and the game-over moment.
-
-
----
-
-## Expected Behavior
-
-- Smooth player movement using `Left`/`Right` or `A`/`D`, and shooting with `Space`
-- Enemy grid marches side to side and drops down whenever it reaches a screen edge
-- Enemies occasionally fire back at the player
-- Score increases each time an enemy is destroyed
-- Game ends when the player is hit by an enemy bullet or the enemy grid reaches the bottom of the screen
-
----
-
-## Folder Structure
-
-```
-space-invaders-main/
-├── main.py
-├── requirements.txt
-├── game/
-│   ├── game_engine.py
-│   ├── player.py
-│   ├── enemy.py
-│   └── bullet.py
-└── README.md
+```bash
+python -m unittest discover -s tests -v
 ```
 
----
+## Assignment evidence
 
-## Submission Checklist
-
-Submission is only the following three things:
-
-- [] A 10-second video of gameplay **before** your changes, showing the bug/broken behavior
-- [] A 10-second video of gameplay **after** your changes, showing the bug fixed and the new features working
-- [] The Chat/LLM used page link, with the complete chat history
+The untouched starter source is stored in `../Lab-4/recordings/before-source/` for capturing the required before video. Capture real 10-second gameplay videos before and after the changes; the videos are not fabricated or included. `docs/LLM_PROMPT_LOG.md` records the prompts and implementation review. Export this conversation from the chat application to provide its shareable chat-history page/link if your submission portal requires one.
